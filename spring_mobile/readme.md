@@ -1,0 +1,7 @@
+### Device
+* DeviceResolver为分析请求设备接口,LiteDeviceResolver为其默认实现
+* DeviceResolverRequestFilter,DeviceResolverHandlerInterceptor都为其实现拦截request分析设备
+* DeviceHandlerMethodArgumentResolver,DeviceWebArgumentResolver提供视图Device的封装
+
+### SitePreference
+
