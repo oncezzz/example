@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.mobile.device.*;
 import org.springframework.mobile.device.site.SitePreferenceHandlerInterceptor;
 import org.springframework.mobile.device.site.SitePreferenceHandlerMethodArgumentResolver;
+import org.springframework.mobile.device.switcher.SiteSwitcherHandlerInterceptor;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -52,10 +53,21 @@ public class MobileConfiguration implements WebMvcConfigurer {
         return new SitePreferenceHandlerMethodArgumentResolver();
     }
 
+    @Bean
+    public SiteSwitcherHandlerInterceptor siteSwitcherHandlerInterceptor() {
+//        return SiteSwitcherHandlerInterceptor.mDot("localhost");
+//        return SiteSwitcherHandlerInterceptor.mDot("localhost",true);
+//        return SiteSwitcherHandlerInterceptor.dotMobi("localhost.mobi");
+//        return SiteSwitcherHandlerInterceptor.dotMobi("localhost.mobi",true);
+//        return SiteSwitcherHandlerInterceptor.standard("localhost","localhost.mobi","localhost.table",".cookie");
+        return SiteSwitcherHandlerInterceptor.urlPath("localhost/m","localhost/t","localhost");
+    }
+
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(deviceResolverHandlerInterceptor());
         registry.addInterceptor(sitePreferenceHandlerInterceptor());
+        registry.addInterceptor(siteSwitcherHandlerInterceptor());
     }
 
     @Override

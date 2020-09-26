@@ -1,7 +1,16 @@
-### Device
+### Device 设备解析
 * DeviceResolver为分析请求设备接口,LiteDeviceResolver为其默认实现
 * DeviceResolverRequestFilter,DeviceResolverHandlerInterceptor都为其实现拦截request分析设备
 * DeviceHandlerMethodArgumentResolver,DeviceWebArgumentResolver提供视图Device的封装
 
-### SitePreference
+### SitePreference 偏好选择
 
+* SitePreferenceHandler偏好处理器,StandardSitePreferenceHandler为其默认实现
+* SitePreferenceRequestFilter,SitePreferenceHandlerInterceptor获取用户偏好设置
+* SitePreferenceWebArgumentResolver,SitePreferenceHandlerMethodArgumentResolver偏好设置SitePreference视图封装
+
+
+### Site switching 站点切换
+* SiteSwitcherHandler站点切换处理器,StandardSiteSwitcherHandler为其默认实现
+* SiteSwitcherHandlerInterceptor,SiteSwitcherRequestFilter为其拦截实现
+* StandardSiteSwitcherHandlerFactory提供快捷创建SiteSwitcherHandler不同配置模式如mDot,dotMobi,standard,urlPath
