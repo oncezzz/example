@@ -6,9 +6,11 @@ import org.springframework.mobile.device.*;
 import org.springframework.mobile.device.site.SitePreferenceHandlerInterceptor;
 import org.springframework.mobile.device.site.SitePreferenceHandlerMethodArgumentResolver;
 import org.springframework.mobile.device.switcher.SiteSwitcherHandlerInterceptor;
+import org.springframework.mobile.device.view.LiteDeviceDelegatingViewResolver;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import java.util.List;
 
@@ -55,12 +57,12 @@ public class MobileConfiguration implements WebMvcConfigurer {
 
     @Bean
     public SiteSwitcherHandlerInterceptor siteSwitcherHandlerInterceptor() {
-//        return SiteSwitcherHandlerInterceptor.mDot("localhost");
+        return SiteSwitcherHandlerInterceptor.mDot("localhost");
 //        return SiteSwitcherHandlerInterceptor.mDot("localhost",true);
 //        return SiteSwitcherHandlerInterceptor.dotMobi("localhost.mobi");
 //        return SiteSwitcherHandlerInterceptor.dotMobi("localhost.mobi",true);
 //        return SiteSwitcherHandlerInterceptor.standard("localhost","localhost.mobi","localhost.table",".cookie");
-        return SiteSwitcherHandlerInterceptor.urlPath("localhost/m","localhost/t","localhost");
+//        return SiteSwitcherHandlerInterceptor.urlPath("localhost/m","localhost/t","localhost");
     }
 
     @Override
@@ -68,6 +70,15 @@ public class MobileConfiguration implements WebMvcConfigurer {
         registry.addInterceptor(deviceResolverHandlerInterceptor());
         registry.addInterceptor(sitePreferenceHandlerInterceptor());
         registry.addInterceptor(siteSwitcherHandlerInterceptor());
+    }
+
+    @Bean
+    public LiteDeviceDelegatingViewResolver liteDeviceDelegatingViewResolver() {
+        InternalResourceViewResolver delegate  = new InternalResourceViewResolver();
+        delegate .setSuffix(".html");
+        LiteDeviceDelegatingViewResolver resolver = new  LiteDeviceDelegatingViewResolver(delegate );
+        resolver.setMobilePrefix("mobile/");
+        return resolver;
     }
 
     @Override

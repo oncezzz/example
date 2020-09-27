@@ -14,3 +14,6 @@
 * SiteSwitcherHandler站点切换处理器,StandardSiteSwitcherHandler为其默认实现
 * SiteSwitcherHandlerInterceptor,SiteSwitcherRequestFilter为其拦截实现
 * StandardSiteSwitcherHandlerFactory提供快捷创建SiteSwitcherHandler不同配置模式如mDot,dotMobi,standard,urlPath
+
+### device aware view 基于设备的视图
+* AbstractDeviceDelegatingViewResolver配置基于不同device选择不同的视图路径 
