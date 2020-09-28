@@ -12,6 +12,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+import java.util.Collections;
 import java.util.List;
 
 /***
@@ -26,7 +27,8 @@ public class MobileConfiguration implements WebMvcConfigurer {
     @Bean
     public DeviceResolver deviceResolver() {
 //        List<String> normalUserAgent = List.of("iphone");
-        List<String> normalUserAgent = List.of("Android");
+//        List<String> normalUserAgent = List.of("Android");
+        List<String> normalUserAgent = Collections.singletonList("Android");
         return new LiteDeviceResolver(normalUserAgent);
     }
 
