@@ -4,6 +4,7 @@ import org.springframework.shell.standard.ShellCommandGroup;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellOption;
+import org.springframework.shell.standard.commands.Clear;
 
 import java.io.File;
 import java.util.Arrays;
@@ -19,11 +20,16 @@ import java.util.stream.Collectors;
  */
 @ShellComponent
 @ShellCommandGroup("a other commands")
-public class OtherCommands {
+public class OtherCommands implements Clear.Command {
 
     @ShellMethod(value = "Echo string a b c .")
     public String echo(String a, @ShellOption({"-B","--argb"}) String b, @ShellOption(defaultValue = "c") String c) {
         return String.format("string a=%s,b=%s,c=%s", a, b, c);
+    }
+
+    @ShellMethod(value = "My clear")
+    public void clear() {
+        System.out.println("my clear");
     }
 
     @ShellMethod(value = "List path file name .",group = "Arithmetic Commands")
