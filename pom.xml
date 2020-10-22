@@ -7,6 +7,7 @@
         <module>mysql_example</module>
         <module>spring_mobile</module>
         <module>spring_shell</module>
+        <module>spring_redis</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
