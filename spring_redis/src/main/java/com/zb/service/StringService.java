@@ -1,7 +1,7 @@
 package com.zb.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 /***
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 public class StringService {
 
     @Autowired
-    private StringRedisTemplate redisTemplate;
+    private RedisTemplate<String,String> redisTemplate;
 
     public void save(String key, String value) {
         redisTemplate.opsForValue().set(key,value);

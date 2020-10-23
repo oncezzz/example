@@ -32,6 +32,9 @@ public class RedisOperationServiceTest {
     @Autowired
     private SetService setService;
 
+    @Autowired
+    private SortSetService sortSetService;
+
     @Test
     public void stringSaveTest() {
         stringService.save("testKey","testValue");
@@ -69,10 +72,25 @@ public class RedisOperationServiceTest {
     public void setSaveTest() {
         ArrayList<Object> list = new ArrayList<>();
         list.addAll(Arrays.asList("张三", 1, "hehe"));
-        setService.save("setListKey",list);
-        Set set = setService.get("setListKey");
+        setService.save("setTestKey",list);
+        Set set = setService.get("setTestKey");
         for (Object o : set) {
-            Assert.assertTrue(list.contains(o));
+            if (o instanceof List) {
+                List listR = (List) o;
+                for (Object term : list) {
+                    Assert.assertTrue(listR.contains(term));
+                }
+            }
+        }
+    }
+
+    @Test
+    public void zSetSaveTest() {
+        sortSetService.save("zSetTestKey","张三",99.1);
+        sortSetService.save("zSetTestKey","李四",100);
+        Set set = sortSetService.get("zSetTestKey");
+        for (Object o : set) {
+            Assert.assertTrue(o.equals("张三") || o.equals("李四"));
         }
     }
 }
