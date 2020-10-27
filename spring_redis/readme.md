@@ -1,5 +1,9 @@
 ## 数据结构
 
+#### key-value
+* redis都是基于key-value结构存储的,key,value并非简单的string类型,而是object对象
+* redis object对象结构由 type:对象类型 encoding:编码格式 pre:底层实现数据结构指针 组成
+
 #### String
 * key:value结构,一个key对应一个值
 * get set incr decr等命令
