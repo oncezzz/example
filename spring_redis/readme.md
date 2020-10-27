@@ -20,6 +20,14 @@
 * key: source01:value01,source02:value02 对每个元素分配分数的有序集合(散列表+跳表)
 * ZADD ZREM ZSCORE ZRANK ZRANFGE等命令
 * 排序计算,比如排行榜
-2.
+
+## 序列化
+
+#### 串行序列化
+* RedisSerializer实现
+* RedisTemplate设置对应的key,value,hashKey,hashValue的序列化器
+
+#### 响应式序列化
+* RedisElementReader,RedisElementWriter控制读写
 
 3.

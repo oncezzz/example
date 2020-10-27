@@ -44,12 +44,12 @@ public class RedisOperationServiceTest {
 
     @Test
     public void hashSaveTest() {
-        hashService.save("testHashKey","name","张三");
+        hashService.save("testHashKey","name","{\"name\":\"张三\"");
         hashService.save("testHashKey","age",18);
         Map map = hashService.get("testHashKey");
         for (Object o : map.keySet()) {
             if (o.equals("name")) {
-                Assert.assertEquals("error","张三",map.get(o));
+                Assert.assertEquals("error","{\"name\":\"张三\"",map.get(o));
             }
             if (o.equals("age")) {
                 Assert.assertEquals("error",18,map.get(o));
